@@ -13,12 +13,12 @@
 
 <body>
     <div class=>
-    <h3>Hi {{username}}, welcome to {{member}}'s planner</h3>
+    <h3>Hi {{surname}}, welcome to {{family_member}}'s planner</h3>
     <div class="task">
         <h4>Add Task</h4>
         <div class="row">
             {% extends 'base.html' %} {% block content %}
-            <form action="/{{username}}/{{member}}/submit_form" method="POST" class="col s12">
+            <form action="/{{surname}}/{{family_member}}/submit_form" method="POST" class="col s12">
                 <!--<div class="row">-->
 
                 <!--    <div class="input-field col s12">-->

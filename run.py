@@ -17,31 +17,31 @@ def index():
     
 @app.route("/login")
 def login():
-    username = request.args.get("username")
-    return redirect(username) 
+    surname = request.args.get("surname")
+    return redirect(surname) 
 
-@app.route("/<username>")
-def get_userpage(username):
-    members = load_members_from_mongo(username)
-    return render_template("userpage.html", username=username, members=members)      
+@app.route("/<surname>")
+def get_userpage(surname):
+    family_members = load_members_from_mongo(surname)
+    return render_template("userpage.html", surname=surname, family_members=family_members)      
 
-@app.route("/<username>/add_member", methods=["POST"])
-def add_member(username):
+@app.route("/<surname>/add_member", methods=["POST"])
+def add_member(surname):
     member = request.form.get("member")
-    add_member_to_mongo(username, member)
-    return redirect(username)  
+    add_member_to_mongo(surname, member)
+    return redirect(surname)  
     
-@app.route("/<username>/<member>")
-def get_family_member(username, member):
-    tasks = load_user_tasks_from_mongo(username, member)
-    return render_template("member_page.html", tasks=tasks, username=username, member=member)
+@app.route("/<surname>/<family_member>")
+def get_family_member(surname, family_member):
+    tasks = load_user_tasks_from_mongo(surname, family_member)
+    return render_template("member_page.html", tasks=tasks, surname=surname, family_member=family_member)
 
-@app.route("/<username>/<member>/new_task_form")
-def render_task_form(username, member):
-    return render_template("add_task.html", username=username, member=member)
+@app.route("/<surname>/<family_member>/new_task_form")
+def render_task_form(surname, family_member):
+    return render_template("add_task.html", surname=surname, family_member=family_member)
     
-@app.route("/<username>/<member>/submit_form", methods=["POST"])
-def add_task(username,member):
+@app.route("/<surname>/<family_member>/submit_form", methods=["POST"])
+def add_task(surname,family_member):
     task_name = request.form.get("task_name")
     task_description = request.form.get("task_description")
     due_date = request.form.get("due_date")
@@ -51,33 +51,22 @@ def add_task(username,member):
             "due_date": due_date,
             "is_urgent": is_urgent
             }
-            
-    save_user_tasks_from_mongo(username,member,task)
-    return redirect(username + "/" + member)
+    save_user_tasks_to_mongo(surname, family_member, task)
+    return redirect(surname + "/" + family_member)
     
-@app.route("/<username>/<member>/<task_name>/delete_task")
-def delete_task(username, member, task_name):
+@app.route("/<surname>/<family_member>/<task_id>/delete_task")
+def delete_task(surname, family_member, task_id):
     with MongoClient(MONGODB_URI) as conn:
         db = conn[MONGODB_NAME]
-        selected_member = db[username].find_one({'name':member})
-        if len(selected_member['task_list']) == 1:
-            if task_name == selected_member['task_list'][0]["task_name"]:
-                del selected_member['task_list'][0]
-        
-        for x in range(len(selected_member['task_list']) -1):
-            if task_name == selected_member['task_list'][x]["task_name"]:
-                del selected_member['task_list'][x]
-
-        db[username].save(selected_member)
+        collection = db[surname + "_" + family_member]
+        collection.delete_one({ '_id': ObjectId(task_id) })
+    return redirect(surname + "/" + family_member)
     
-    return redirect(username + "/" + member)
-    
-
-@app.route("/<username>/<member>/<task_id>/edit_task", methods=['GET', 'POST'])
-def edit_task(username, member, task_id):
-    with MongoClient(MONGODB_URI) as conn:
+@app.route("/<surname>/<family_member>/<task_id>/edit_task", methods=['GET', 'POST'])
+def edit_task(surname, family_member, task_id):
+    with MongoClient(MONGODB_URI) as conn:          
         db = conn[MONGODB_NAME]
-        item = db[member].find_one({'_id':ObjectId(task_id)})
+        item = db[surname+ "_" + family_member].find_one({'_id':ObjectId(task_id)})
     if request.method=="POST":
         item['task_name'] = request.form.get('task_name')
         item['task_description'] = request.form.get('task_description')
@@ -85,51 +74,35 @@ def edit_task(username, member, task_id):
         item['is_urgent'] = request.form.get('is_urgent')
         with MongoClient(MONGODB_URI) as conn:
             db = conn[MONGODB_NAME]
-            db[member].save(item)
-            return redirect("/")
-    
+            db[surname + "_" + family_member].save(item)
+            return redirect(surname + "/" + family_member)
     else:
-        return render_template("edittask.html", username=username, member=member, task_list=item)
+        return render_template("edittask.html", surname=surname, family_member= family_member, task=item)
 
     
-    
-    
-    
-    
-    
-    
-    
-
-    
-def add_member_to_mongo(username, member):
+def add_member_to_mongo(surname, family_member):
     with MongoClient(MONGODB_URI) as conn:
         db = conn[MONGODB_NAME]
-        collection = db[username]
-        collection.insert({'name': member, 'task_list': []})
+        db.create_collection(surname + "_" + family_member)
         
-def load_members_from_mongo(username):
+def load_members_from_mongo(surname):
     with MongoClient(MONGODB_URI) as conn:
         db = conn[MONGODB_NAME]
-        collection = db[username]
-        users = db.collection_names()
-        if username in users:
-            user_members = collection.find()
-            return user_members
+        members = db.collection_names()
+        return [member.split("_")[1] for member in members if surname == member.split("_")[0]]
             
 
-def load_user_tasks_from_mongo(username, member):
+def load_user_tasks_from_mongo(surname, family_member):
     with MongoClient(MONGODB_URI) as conn:
         db = conn[MONGODB_NAME]
-        list = db[username].find_one({'name':member})
-        return list['task_list']
+        collection = db[surname + "_" + family_member]
+        return collection.find()
         
-def save_user_tasks_from_mongo(username,member,task):
+def save_user_tasks_to_mongo(surname, family_member,task):
     with MongoClient(MONGODB_URI) as conn:
         db = conn[MONGODB_NAME]
-        find_document = db[username].find_one({'name':member})
-        find_document['task_list'].append(task)
-        db[username].save(find_document)
-
+        collection = db[surname + "_" + family_member]
+        collection.insert(task)
 
 
 

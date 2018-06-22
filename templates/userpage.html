@@ -16,14 +16,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1> Welcome {{username}}, LET'S PLAN!!!</h1>
+                <h1> Welcome {{surname}} family, LET'S PLAN!!!</h1>
                 <h2>Montly Planner</h2>
             </div>
         </div>
     </div>    
     <h3>Add a member</h3>
     <div class="form_input">
-    <form action="/{{username}}/add_member" method="POST">
+    <form action="/{{surname}}/add_member" method="POST">
         <input type="text" name="member"/>
         <input type="submit" value="Submit"/>
     </form>
@@ -32,8 +32,8 @@
    
     <div class="container">
         <div class="row">
-        {% if members %}
-            {% for member in members %}
+        {% if family_members %}
+            {% for member in family_members %}
             <p></p>
             
             <div class="col-sm-4">
@@ -41,14 +41,14 @@
             <table style="width:100%">
               <tr>
                 <th rowspan="3"><img src="/static/images/daddypig.png" alt="daddy pig" width="200" height="250"></th>
-                <td>{{member.name}}</td>
+                <td>{{member}}</td>
               </tr>
               <tr>
                   <td>Go to your list</td>
               </tr>
               <tr>
                   <td>
-                    <a href="{{username}}/{{ member.name }}" class="glyphicon glyphicon-arrow-right">{{ member.name }} task-list</a> 
+                    <a href="{{surname}}/{{ member }}" class="glyphicon glyphicon-arrow-right">{{ member }} task-list</a> 
                   </td>
               </tr>
              
