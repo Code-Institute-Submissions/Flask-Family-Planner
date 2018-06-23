@@ -11,14 +11,14 @@
 
 </head>
 <body>
-    <div class="col-sm-5 logbtn" >
+    <div class="col-sm-4 logbtn" >
         <a href="/" class="btn btn_large">LOG OUT</a></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <h2>Monthly Planner</h2>
-                <h3> Welcome {{surname}} family, LET'S PLAN!!!</h1>
-                
+                <h3> Welcome {{surname}} family</h1>
+                <h4>Let's Plan!!!</h4>
             </div>
         </div>
     </div>    
@@ -35,8 +35,6 @@
         <div class="row">
         {% if family_members %}
             {% for member in family_members %}
-            <p></p>
-            
             <div class="col-sm-4">
     
             <table style="width:100%">
@@ -57,7 +55,9 @@
             </div>
             {% endfor %}
                 {% else %}
-                <h1> You need to add a family member</h1>
+                <div class="add_family">
+                <h3> "You need to add a family member"</h3>
+                </div>
             {% endif %}
             
         </div>
