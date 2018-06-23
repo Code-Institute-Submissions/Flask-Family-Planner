@@ -1,18 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Fauna+One|Life+Savers" rel="stylesheet");
+
 body {
-    background-image: url("/static/images/landscape.jpg");
+    background-image: url("/static/images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'Fauna One', serif;
 }
 
-/*.index_body {*/
-/*    background-image: url("/static/images/peppa.jpg");*/
-/*    background-size: cover;*/
-    
-/*    background-repeat: no-repeat;*/
-/*}*/
+.form_input {
+    text-align: center;
+}
+
 
 .logbtn {
-    padding-top: 40px;
+    /*position:absolute;*/
+transition: .5s ease;
+    left: 30px;
+    top: 15px;
+
 }
 
 
@@ -20,19 +25,21 @@ body {
 h1, h2, h3, h4{
     text-align: center;
 }
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    
 }
 
 th, td {
     padding: 0px;
-    text-align: left;    
+    text-align: center;    
 }
 
 a {
     padding-top: 30px;
-    padding-left: 80px;
+    /*padding-left: 80px;*/
 }
 
 .task {
@@ -46,10 +53,15 @@ a {
 
 .btn_small {
     height: 36px;
-    width: 80px;
+    width: 100px;
     line-height: 24px;
     margin: 5px 5px;
-    /*padding: 0 0.5em;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    
 }
 
 .btn_large {
