@@ -118,3 +118,19 @@ a {
 .add_family {
     color: red;
 }
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 2em;
+    -webkit-margin-after: 2em;
+    -webkit-margin-start: 1px;
+    -webkit-margin-end: 1px;
+    -webkit-padding-start: 20px;
+}
+
+li {
+    font-size: 16px;
+    text-align: center;
+    
+}
