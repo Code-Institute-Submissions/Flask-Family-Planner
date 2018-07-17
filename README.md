@@ -14,7 +14,7 @@ The app gives the user the opportunity to login as family and add members of the
 
 ### How does it work?
 
-This app is built using Flask framework, uses PYTHON3 to route viewers through the site and it's styled with CSS. The pages are displayed with HTML. 
+This app is built using Flask framework, uses PYTHON3 to route viewers through the site and it's styled with CSS. The pages are displayed with HTML.
 
 ## Tech Used
 
@@ -25,6 +25,7 @@ This app is built using Flask framework, uses PYTHON3 to route viewers through t
 Base languages used to create app
 * CSS
 Used to style the app.
+* Mango DB was used as data base in building the app.
 * Javascript for the date picker and data input.
 * Cloud 9 - Used to code the project.
 * Github and Github Pages - Used to track the progress of the project, and host the site for submission.
