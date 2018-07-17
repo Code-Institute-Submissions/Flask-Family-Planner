@@ -1,5 +1,7 @@
 #This Project is for Education purpose only
 
+# The app url is https://flask-family-planner.herokuapp.com/
+
 # Flask Built Family Planner
 
 ## Overview
