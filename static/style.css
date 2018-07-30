@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Fauna+One|Life+Savers" rel="stylesheet");
+@import url('https://fonts.googleapis.com/css?family=Fauna+One|Life+Savers');
 
 body {
     background-image: url("/static/images/background.jpg");
@@ -136,7 +136,7 @@ li {
 }
 
 .quotes    {
-    padding-top: 20px;
+    padding-top: 40px;
     text-align: center;
     
 }
