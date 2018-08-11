@@ -64,5 +64,5 @@ These are the things you need to install
 
 ### Media
 
-* The photos used in this site were obtained randomly from google images.
+* The images used in this app were obtained randomly from google images.
 
