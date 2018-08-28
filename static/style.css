@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Fauna+One|Life+Savers');
+@import url('https://fonts.googleapis.com/css?family=Fauna+One|Life+Savers|Indie+Flower');
 
 body {
-    background-image: url("/static/images/background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
     font-family: 'Fauna One', serif;
 }
 
@@ -34,6 +31,10 @@ transition: .5s ease;
 
 h1, h2, h3, h4{
     text-align: center;
+}
+
+h3 {
+    color: #eaa844;
 }
 
 h1 {
@@ -138,5 +139,14 @@ li {
 .quotes    {
     padding-top: 40px;
     text-align: center;
-    
+    font-family: 'Indie Flower', cursive;
+}
+
+.text {
+    font-size: 28px;
+    color: #eaa844;
+}
+
+.author {
+    font-size: 20px;
 }

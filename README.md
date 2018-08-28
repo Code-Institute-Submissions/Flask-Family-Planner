@@ -10,7 +10,7 @@ This is a Flask application built Family Planner. It is basically a planner for 
 
 ## UX:
 
-This app is built to help the entire member of the family plan and manage their task. Any member of the family can login with the family surname to add or edit a task on his or her own diary or other member of the family. A completed task can also be deleted entirely. Balsamiq was used to wireframe the site whice served as guide through out the whole process. The files are included in the wireframe folder of this project and also available [here](https://balsamiq.cloud/st8pqbr/p2ma5m/r2278) for a limited period. The website is also optimised for both mobile and desktop devices for good user experience.
+This app is built to help the entire member of the family plan and manage their task. Any member of the family can login with the family surname to add or edit a task on his or her own diary or other member of the family. A completed task can also be deleted entirely. Balsamiq was used to wireframe the site which served as guide through out the whole process. The files are included in the wireframe folder of this project and also available [here](https://balsamiq.cloud/st8pqbr/p2ma5m/r2278) for a limited period. The website is also optimised for both mobile and desktop devices for good user experience.
 
 ## Features:
 
